@@ -101,6 +101,7 @@ h3 {
 
 .threats-panel,
 .details-panel {
+  margin-bottom: 8px;
   flex: 1;
   background-color: var(--card-color);
   border-radius: 10px;
@@ -130,6 +131,8 @@ h3 {
 }
 
 .threat-btn {
+  text-align: left;
+  padding: 12px;
   display: block;
   width: 100%;
   padding: 0.8rem 1rem;
@@ -241,6 +244,20 @@ h3 {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.threat-id {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.threat-description {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.threat-btn.selected .threat-id {
+  color: var(--accent-color);
 }
 
 .theme-toggle-btn:hover {

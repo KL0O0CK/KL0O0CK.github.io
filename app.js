@@ -68,17 +68,28 @@ function renderThreatsList(threats) {
   threatsList.innerHTML = "";
 
   threats.forEach((threat) => {
+    const threatContainer = document.createElement("div");
+    threatContainer.className = "threat-container";
+
     const button = document.createElement("button");
     button.className = "threat-btn";
-    button.textContent = threat;
     button.dataset.threat = threat;
 
     if (state.selectedThreats.has(threat)) {
       button.classList.add("selected");
     }
 
+    // Добавляем идентификатор и описание
+    button.innerHTML = `
+          <div class="threat-id">${threat}</div>
+          <div class="threat-description">${
+            state.threatsData[threat]?.description || "Описание отсутствует"
+          }</div>
+      `;
+
     button.addEventListener("click", () => toggleThreatSelection(threat));
-    threatsList.appendChild(button);
+    threatContainer.appendChild(button);
+    threatsList.appendChild(threatContainer);
   });
 }
 
