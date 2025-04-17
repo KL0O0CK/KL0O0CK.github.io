@@ -1,39 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Анализ угроз безопасности</title>
-    <link rel="stylesheet" href="/static/style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>Анализ угроз безопасности</h1>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Анализ угроз безопасности</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Анализ угроз безопасности</h1>
 
-      <div class="controls">
-        <button id="show-selected" class="btn" disabled>
-          Показать выбранное
-        </button>
-        <button id="clear-selection" class="btn">Очистить выбор</button>
-      </div>
+            <div class="controls">
+                <button id="show-selected" class="btn" disabled>
+                    Показать выбранное
+                </button>
+                <button id="clear-selection" class="btn">Очистить выбор</button>
+            </div>
 
-      <div class="app-content">
-        <div class="threats-panel">
-          <h2>Список угроз</h2>
-          <input type="text" id="search" placeholder="Поиск угроз..." />
-          <div id="threats-list" class="threats-list"></div>
+            <div class="app-content">
+                <div class="threats-panel">
+                    <h2>Список угроз</h2>
+                    <input
+                        type="text"
+                        id="search"
+                        placeholder="Поиск угроз..."
+                    />
+                    <div id="threats-list" class="threats-list"></div>
+                </div>
+
+                <div class="details-panel">
+                    <div id="threat-details">
+                        <div class="empty-state">Выберите угрозы из списка</div>
+                    </div>
+                </div>
+            </div>
+
+            <button id="theme-toggle" class="theme-toggle-btn">
+                🌙 Тёмная тема
+            </button>
         </div>
 
-        <div class="details-panel">
-          <div id="threat-details">
-            <div class="empty-state">Выберите угрозы из списка</div>
-          </div>
-        </div>
-      </div>
-
-      <button id="theme-toggle" class="theme-toggle-btn">🌙 Тёмная тема</button>
-    </div>
-
-    <script src="/static/app.js"></script>
-  </body>
+        <script src="app.js"></script>
+    </body>
 </html>
