@@ -29,7 +29,9 @@ function updateThemeButton() {
 async function loadThreatsData() {
   try {
     showLoading("threats-list", "Загрузка данных об угрозах...");
-    const response = await fetch("threats_final.json");
+    const response = await fetch(
+      "https://kl0o0ck.github.io/threats_final.json"
+    );
 
     if (!response.ok) {
       throw new Error("Не удалось загрузить данные об угрозах");
