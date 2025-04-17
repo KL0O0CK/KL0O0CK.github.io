@@ -41,7 +41,6 @@
   --error-color: var(--error-color-light);
 }
 
-/* Базовые стили */
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
@@ -53,8 +52,9 @@ body {
 }
 
 .container {
-  max-width: 100%;
-  padding: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 h1,
@@ -64,7 +64,6 @@ h3 {
   margin-top: 0;
 }
 
-/* Кнопки */
 .btn {
   padding: 0.6rem 1.2rem;
   background-color: var(--accent-color);
@@ -77,6 +76,8 @@ h3 {
   font-size: 1rem;
   display: inline-block;
   text-align: center;
+  margin-right: 10px;
+  margin: 10px;
 }
 
 .btn:hover {
@@ -89,11 +90,13 @@ h3 {
   cursor: not-allowed;
 }
 
-/* Панели */
+.controls {
+  margin-bottom: 20px;
+}
+
 .app-content {
   display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+  gap: 20px;
 }
 
 .threats-panel,
@@ -104,20 +107,6 @@ h3 {
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--border-color);
-}
-
-/* Список угроз */
-#search {
-  outline: none;
-  border: none;
-  width: 96%;
-  padding: 0.7rem 0.6rem;
-  margin-bottom: 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  background-color: var(--card-color);
-  color: var(--text-color);
-  font-size: 1rem;
 }
 
 .threats-list {
@@ -140,7 +129,6 @@ h3 {
   border-radius: 4px;
 }
 
-/* Кнопки угроз */
 .threat-btn {
   display: block;
   width: 100%;
@@ -154,8 +142,6 @@ h3 {
   text-align: left;
   font-size: 1rem;
   color: var(--text-color);
-  position: relative;
-  overflow: hidden;
 }
 
 .threat-btn:hover {
@@ -170,37 +156,34 @@ h3 {
   font-weight: 600;
 }
 
-.threat-btn:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--accent-color);
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-.threat-btn:hover:after {
-  opacity: 0.1;
-}
-
-.threat-btn:active {
-  transform: translateY(1px);
-}
-
-/* Детали угроз */
 #threat-details {
   min-height: 65vh;
 }
 
-.threat-group {
-  margin-bottom: 1.5rem;
-  padding: 1.2rem;
-  background-color: var(--card-color);
-  border-radius: 8px;
-  border-left: 3px solid var(--accent-color);
+.empty-state {
+  padding: 20px;
+  text-align: center;
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+.threats-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.threat-chip {
+  background-color: var(--accent-color);
+  color: #000;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.section {
+  margin-bottom: 20px;
 }
 
 .item-list {
@@ -222,14 +205,25 @@ h3 {
   border-left: 3px solid var(--accent-color);
 }
 
+.impl-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
 .impl-id {
   font-weight: bold;
   color: var(--accent-color);
-  display: inline-block;
   min-width: 80px;
 }
 
-/* Кнопка темы */
+.item-meta {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-top: 5px;
+}
+
 .theme-toggle-btn {
   position: fixed;
   bottom: 20px;
@@ -254,14 +248,59 @@ h3 {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Адаптивность */
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.details-header h2 {
+  margin: 0;
+}
+
+#details-search {
+  outline: none;
+  border: none;
+  padding: 0.7rem 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--card-color);
+  color: var(--text-color);
+  font-size: 1rem;
+  min-width: 250px;
+}
+
+.no-results {
+  padding: 1rem;
+  text-align: center;
+  color: var(--error-color);
+}
+
+.loading {
+  padding: 20px;
+  text-align: center;
+}
+
+.error {
+  padding: 20px;
+  text-align: center;
+  color: var(--error-color);
+}
+
 @media (max-width: 768px) {
   .app-content {
     flex-direction: column;
   }
 
-  .threats-panel,
-  .details-panel {
+  .details-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #details-search {
     width: 100%;
   }
 
@@ -270,10 +309,6 @@ h3 {
     right: 10px;
     padding: 0.6rem 1rem;
     font-size: 0.9rem;
-  }
-
-  .btn {
-    margin-top: 10px;
   }
 }
 
@@ -284,9 +319,5 @@ h3 {
 
   h1 {
     font-size: 1.6rem;
-  }
-
-  #search {
-    font-size: 0.9rem;
   }
 }
