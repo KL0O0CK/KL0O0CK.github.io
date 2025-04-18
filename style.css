@@ -1,5 +1,4 @@
 :root {
-  /* Светлая тема */
   --bg-color-light: #f8f9fa;
   --card-color-light: #ffffff;
   --text-color-light: #212529;
@@ -9,7 +8,6 @@
   --border-color-light: #dee2e6;
   --error-color-light: #dc3545;
 
-  /* Тёмная тема */
   --bg-color-dark: #121212;
   --card-color-dark: #1e1e1e;
   --text-color-dark: #f8f9fa;
@@ -19,7 +17,6 @@
   --border-color-dark: #333333;
   --error-color-dark: #ff6b6b;
 
-  /* Активная тема */
   --bg-color: var(--bg-color-dark);
   --card-color: var(--card-color-dark);
   --text-color: var(--text-color-dark);
@@ -59,7 +56,8 @@ body {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   color: var(--accent-color);
   margin-top: 0;
 }
@@ -77,7 +75,6 @@ h3 {
   display: inline-block;
   text-align: center;
   margin-right: 10px;
-  margin: 10px;
 }
 
 .btn:hover {
@@ -88,6 +85,16 @@ h3 {
 .btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+#generate-pdf {
+  margin: 15px 0;
+  background-color: #d32f2f;
+  color: white;
+}
+
+#generate-pdf:hover {
+  background-color: #b71c1c;
 }
 
 .controls {
@@ -101,7 +108,6 @@ h3 {
 
 .threats-panel,
 .details-panel {
-  margin-bottom: 8px;
   flex: 1;
   background-color: var(--card-color);
   border-radius: 10px;
@@ -130,12 +136,14 @@ h3 {
   border-radius: 4px;
 }
 
+.threat-item {
+  margin-bottom: 8px;
+}
+
 .threat-btn {
-  text-align: left;
-  padding: 12px;
   display: block;
   width: 100%;
-  padding: 0.8rem 1rem;
+  padding: 12px;
   margin-bottom: 0.5rem;
   background-color: var(--card-color);
   border: 1px solid var(--border-color);
@@ -143,7 +151,6 @@ h3 {
   cursor: pointer;
   transition: all 0.2s;
   text-align: left;
-  font-size: 1rem;
   color: var(--text-color);
 }
 
@@ -156,75 +163,109 @@ h3 {
 .threat-btn.selected {
   background-color: var(--selected-color);
   border-left: 4px solid var(--accent-color);
-  font-weight: 600;
+}
+
+.threat-btn.selected .threat-id {
+  color: var(--accent-color);
+}
+
+.threat-id {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.threat-description {
+  font-size: 0.9rem;
+  opacity: 0.9;
 }
 
 #threat-details {
   min-height: 65vh;
 }
 
-.empty-state {
+.empty-state,
+.loading,
+.error {
   padding: 20px;
   text-align: center;
   color: var(--text-color);
-  opacity: 0.7;
 }
 
-.threats-chips {
+.error {
+  color: var(--error-color);
+}
+
+.view-options {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
-.threat-chip {
-  background-color: var(--accent-color);
-  color: #000;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.9rem;
+.view-btn {
+  padding: 0.6rem 1.2rem;
+  background-color: var(--card-color);
+  color: var(--text-color);
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
-.section {
+.view-btn.active {
+  background-color: var(--accent-color) !important;
+  color: #000 !important;
+  border-color: var(--accent-color) !important;
+  box-shadow: 0 0 0 2px rgba(31, 152, 57, 0.3);
+}
+
+.view-btn:not(.active) {
+  background-color: var(--card-color);
+  color: var(--text-color);
+}
+
+.view-btn:not(.active):hover {
+  background-color: var(--hover-color);
+  transform: translateY(-2px);
+}
+
+.threat-details-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: var(--card-color);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.threat-section {
   margin-bottom: 20px;
-}
-
-.item-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.object-item,
-.impl-item {
-  padding: 0.8rem 1rem;
-  margin-bottom: 0.5rem;
+  padding: 15px;
   background-color: var(--hover-color);
   border-radius: 6px;
-  transition: all 0.2s;
 }
 
-.impl-item {
-  border-left: 3px solid var(--accent-color);
+.summary-section {
+  display: grid;
+  gap: 30px;
 }
 
-.impl-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 5px;
+.summary-block {
+  padding: 20px;
+  background-color: var(--card-color);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
 }
 
-.impl-id {
-  font-weight: bold;
-  color: var(--accent-color);
-  min-width: 80px;
+.objects-list,
+.methods-list {
+  columns: 2;
+  column-gap: 20px;
 }
 
-.item-meta {
-  font-size: 0.9rem;
-  opacity: 0.8;
-  margin-top: 5px;
+.objects-list li,
+.methods-list li {
+  margin-bottom: 8px;
+  break-inside: avoid;
 }
 
 .theme-toggle-btn {
@@ -246,65 +287,22 @@ h3 {
   gap: 8px;
 }
 
-.threat-id {
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-
-.threat-description {
-  font-size: 0.9rem;
-  opacity: 0.9;
-}
-
-.threat-btn.selected .threat-id {
-  color: var(--accent-color);
-}
-
 .theme-toggle-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-.details-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.details-header h2 {
-  margin: 0;
-}
-
 #details-search {
   outline: none;
   border: none;
-  padding: 0.7rem 0rem;
+  padding: 0.8rem 0.2rem;
   border: 1px solid var(--border-color);
   border-radius: 6px;
   background-color: var(--card-color);
   color: var(--text-color);
   font-size: 1rem;
   min-width: 250px;
-}
-
-.no-results {
-  padding: 1rem;
-  text-align: center;
-  color: var(--error-color);
-}
-
-.loading {
-  padding: 20px;
-  text-align: center;
-}
-
-.error {
-  padding: 20px;
-  text-align: center;
-  color: var(--error-color);
+  margin: 5px;
 }
 
 @media (max-width: 768px) {
@@ -312,9 +310,13 @@ h3 {
     flex-direction: column;
   }
 
-  .details-header {
+  .objects-list,
+  .methods-list {
+    columns: 1;
+  }
+
+  .view-options {
     flex-direction: column;
-    align-items: flex-start;
   }
 
   #details-search {
