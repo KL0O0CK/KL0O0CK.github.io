@@ -3,7 +3,7 @@
   --card-color-light: #ffffff;
   --text-color-light: #212529;
   --accent-color-light: #1f9839;
-  --hover-color-light: #e9ecef;
+  --hover-color-light: #d7f4d5;
   --selected-color-light: #d7f4d5;
   --border-color-light: #dee2e6;
   --error-color-light: #dc3545;
@@ -74,7 +74,7 @@ h4 {
   font-size: 1rem;
   display: inline-block;
   text-align: center;
-  margin-right: 10px;
+  margin: 10px;
 }
 
 .btn:hover {
@@ -89,12 +89,14 @@ h4 {
 
 #generate-pdf {
   margin: 15px 0;
-  background-color: #d32f2f;
-  color: white;
+  background-color: var(--accent-color);
+  color: #000;
 }
 
 #generate-pdf:hover {
-  background-color: #b71c1c;
+  background-color: var(--accent-color);
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .controls {
